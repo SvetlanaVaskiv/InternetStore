@@ -1,9 +1,8 @@
 import { observer } from "mobx-react-lite";
 import { useContext } from "react";
-import { Button, Card, CloseButton, Container, ListGroup,  Navbar, Offcanvas} from "react-bootstrap";
+import { Button, Card, Container, ListGroup,  Navbar, Offcanvas} from "react-bootstrap";
 import { Context } from "../index";
 import "../index.css";
-import DeviceStore from "../store/DeviceStore";
 
 const TypeBar = observer(() => {
   const { device } = useContext(Context);
@@ -13,9 +12,9 @@ const TypeBar = observer(() => {
   }
   return (
     <>
-    {device.selectedType.name ? <Button  className="btn clearFiltres mt-1 mb-2" onClick={click}  ><span>Clear filtres</span>
+    {device.selectedType.name ? <Button  className="btnn clearFiltres mt-1 mb-2" onClick={click}  ><span>Clear filtres</span>
              
-            </Button> : device.selectedBrand.name ? <Button  className="btn clearFiltres mt-1 mb-2" onClick={click}  > <span>Clear filtres</span>
+            </Button> : device.selectedBrand.name ? <Button  className="btnn clearFiltres mt-1 mb-2" onClick={click}  > <span>Clear filtres</span>
              
             </Button> : null}
             

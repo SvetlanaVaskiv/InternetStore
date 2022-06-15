@@ -10,9 +10,12 @@ export default class DeviceStore {
         this._page = 1
         this._totalCount = 0
         this._limit = 12
+        this._error = false
         makeAutoObservable(this)
     }
-
+setError(bool) {
+    this._error = bool
+}
     setTypes(types) {
         this._types = types
     }
@@ -43,7 +46,9 @@ export default class DeviceStore {
     setTotalCount(count) {
         this._totalCount = count
     }
-
+    get error(){
+        return this._error
+    }
     get types() {
         return this._types
     }

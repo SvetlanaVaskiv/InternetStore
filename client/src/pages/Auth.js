@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Alert, Button, Card, Container, Form } from "react-bootstrap";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../index";
@@ -39,6 +39,8 @@ const Auth = observer(() => {
         }
         user.setUser(user);
         user.setIsAuth(true);
+        user.setError(false)
+
         navigate(SHOP_ROUTE);
       } catch (e) {
         alert(e.response.data.message);

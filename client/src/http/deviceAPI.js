@@ -1,5 +1,17 @@
 import { $authHost, $host } from "./index";
+import { check } from "./userApi";
 
+
+export const fetchOneBasket = async (id) => {
+  
+  const { data } = await $host.get("api/basket/" + id);
+        return data;
+}
+
+export const addDevice = async (id, user)=>{
+const {data} = await $host.post("api/basketdevice", id , user)
+return data
+}
 export const createType = async (type) => {
   const { data } = await $authHost.post("api/type", type);
   return data;
@@ -51,3 +63,8 @@ export const fetchOneDevice = async (id) => {
 
   }
 };
+export const updateRating = async (id, rating) => {
+    const { data } = await $host.put("api/device/" + id , {rating});
+    return data;
+ 
+}

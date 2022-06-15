@@ -10,48 +10,72 @@ import {
 import ratingIcon from "../assets/rating.png";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchOneDevice } from "../http/deviceAPI";
+import { addDevice, fetchOneDevice, updateRating } from "../http/deviceAPI";
 import ErrorPage from "./ErrorPage";
+import star from '../assets/rating.png'
+import jwt_decode from "jwt-decode";
+
+
 
 const DevicePage = () => {
   const [loadind, setLoading] = useState(true);
   const [device, setDevice] = useState({});
   const { id } = useParams();
+ 
   useEffect(() => {
       fetchOneDevice(id)
         .then((data) => setDevice(data))
         .finally(() => setLoading(false))
         .catch((error) => alert(error.message))
-  }, []);
+  }, [id]);
+  const [rtgDevise, setRtgDevise] = useState(null);
 
   if (loadind) {
     return <Spinner animation="grow" />;
   }
+  const click = async () => {
+    try {
+     const data = await updateRating(id, device.rating)
+     setRtgDevise(data.rating)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const user = jwt_decode( localStorage.getItem("token"))
+
+  const addToBasket = async () => {
+try {
+  const data = await addDevice({id, user})
+} catch (error) {
+  console.log(error)
+}
+  }
+
   return (<>
     {device === null ? <ErrorPage/> : <Container className="mt-3">
       <Row>
         <Col md={4}>
           <Image
-            width={300}
-            height={300}
+          className="device-icon"
+           
             src={process.env.REACT_APP_API_URL + device.img}
           />
         </Col>
         <Col md={4}>
           <Row className="d-flex flex-column align-items-center">
             <h2>{device.name}</h2>
+          
             <div
-              className="d-flex align-items-center justify-content-center"
+            className="bgStar"
               style={{
                 background: `url(${ratingIcon}) no-repeat center center`,
-                width: 240,
-                height: 240,
-                backgroundSize: "cover",
-                fontSize: 64,
               }}
             >
-              {device.rating}
+              {rtgDevise || device.rating}
+              
             </div>
+            <Button onClick={click} className="clearFiltres m-2">Add <Image className="smStar" src={star}/>
+ </Button>
           </Row>
         </Col>
         <Col md={4}>
@@ -65,7 +89,7 @@ const DevicePage = () => {
             }}
           >
             <h3>From: {device.price} $</h3>
-            <Button variant={"outline-dark"}>Add to basket</Button>
+            <Button onClick={addToBasket}  variant={"outline-dark"}>Add to basket</Button>
           </Card>
         </Col>
       </Row>

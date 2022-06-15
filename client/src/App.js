@@ -9,8 +9,12 @@ import { check } from "./http/userApi";
 import {  Spinner } from "react-bootstrap";
 import "./index.css";
 const App = observer(() => {
+
   const { user } = useContext(Context);
+
   const [loadind, setLoading] = useState(true);
+  const [errormsg, setErrormsg] = useState('');
+ 
   useEffect(() => {
     check()
       .then((data) => {
@@ -20,20 +24,24 @@ const App = observer(() => {
         } else {
           user.setIsAuth(false);
         }
+        user.setError(false)
       })
       .catch((e) => {
-        console.log(e.response.data.message);
+        user.setError(true);
+        setErrormsg("Request failed ;  " +e.message)
       })
       .finally(() => setLoading(false));
   }, [user]);
   if (loadind) {
     return <Spinner animation="grow" />;
   }
-
+console.log(user.error)
   return (
     <BrowserRouter>
-      <NavBar />
-      <AppRouter />
+    {user.error && <h6>{errormsg}</h6>} 
+    <NavBar />
+    <AppRouter />
+     
     </BrowserRouter>
   );
 });

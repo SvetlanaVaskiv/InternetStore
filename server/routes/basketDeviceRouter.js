@@ -5,8 +5,8 @@ const authMiddleware = require('../middleware/authMiddleware')
 
 
 
-router.get('/',authMiddleware, basketDeviceController.getAll)
-router.post('/',authMiddleware, basketDeviceController.create)
-router.delete('/',authMiddleware, basketDeviceController.delete)
+router.get('/', basketDeviceController.getAll)
+router.post('/',basketDeviceController.create)
+router.delete('/', basketDeviceController.delete)
 
 module.exports = router

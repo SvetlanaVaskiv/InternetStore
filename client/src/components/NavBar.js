@@ -10,6 +10,7 @@ import {
 } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 import jwt_decode from "jwt-decode";
+import { fetchOneBasket } from "../http/deviceAPI";
 
 const NavBar = observer(() => {
   const { user } = useContext(Context);
@@ -33,6 +34,13 @@ const NavBar = observer(() => {
      user.setIsAuth(false);
      localStorage.removeItem("token")
    };
+
+   const getBasket = async () => {
+     const id= token.id
+   const basketId = await fetchOneBasket(id)
+
+    navigate(BASKET_ROUTE+'/'+basketId.id)
+   }
   return (
     <Navbar bg="dark" variant="dark" className="layoutNavbar">
       <Container  className="flex-wrap">
@@ -51,7 +59,7 @@ const NavBar = observer(() => {
             ) : (
               <Button
                 variant={"outline-light"}
-                onClick={() => navigate(BASKET_ROUTE)}
+                onClick={getBasket }
                 className="ms-2"
               >
                 Basket

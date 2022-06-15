@@ -2,7 +2,8 @@ const { Basket } = require("../models/models");
 
 class BasketController {
   async getOne(req, res) {
-    const basket = await Basket.findOne({ where: { id: req.user.id } });
+    const{ id}  = req.params;
+    const basket = await Basket.findOne({ where: { userId: id} });
     return res.json(basket);
   }
 

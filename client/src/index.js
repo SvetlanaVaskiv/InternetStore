@@ -1,7 +1,6 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import ErrorBoundary from './pages/ErrorPage';
 import DeviceStore from './store/DeviceStore';
 import UserStore from './store/UserStore';
 

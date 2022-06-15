@@ -6,6 +6,7 @@ const checkRoles=require('../middleware/checkRoleMiddleware')
 router.post('/',checkRoles('ADMIN'),  deviceController.create)
 router.get('/', deviceController.getAll)
 router.get('/:id', deviceController.getOne)
+router.put('/:id', deviceController.updateOne)
 router.delete('/',checkRoles('ADMIN'), deviceController.delete)
 
 module.exports = router

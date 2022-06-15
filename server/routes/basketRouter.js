@@ -5,5 +5,5 @@ const authMiddleware = require('../middleware/authMiddleware')
 
 
 
-router.get('/',authMiddleware, basketController.getOne)
+router.get('/:id', basketController.getOne)
 module.exports = router

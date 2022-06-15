@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { useContext } from "react";
-import { Card, CloseButton, Container, Navbar, Offcanvas, ListGroup} from "react-bootstrap";
+import {  Container, Navbar, Offcanvas, ListGroup} from "react-bootstrap";
 import { Context } from "../index";
 const BrandBar = observer(() => {
   const { device } = useContext(Context);

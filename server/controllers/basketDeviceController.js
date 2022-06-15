@@ -12,12 +12,17 @@ class BasketDeviceController {
 
   async create(req, res, next) {
     try {
-      const { deviceId } = req.body;
-      const basketId = await Basket.findOne({ where: { id: req.user.id } });
+      const { id } = req.body;
+      const basketId = await Basket.findOne({ where: { userId: req.body.user.id } });
+      console.log(basketId  )
+
+
       const basketDevice = await BasketDevice.create({
-        deviceId,
+        deviceId: id,
         basketId: basketId.id,
       });
+      console.log(basketDevice)
+
       return res.json(basketDevice);
     } catch (err) {
       next(ApiError.badRequest(err.message));
