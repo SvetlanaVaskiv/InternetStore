@@ -23,9 +23,11 @@ const Auth = observer(() => {
       password: Yup.string()
         .max(15, "Must be 15 characters or less")
         .min(8, "Must be at least 8 characters")
-        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+        .matches(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
 
-        , 'Password must  contains minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.')
+          "Password must  contains minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character."
+        )
         .required("Required"),
       email: Yup.string().email("Invalid email address").required("Required"),
     }),
@@ -39,7 +41,7 @@ const Auth = observer(() => {
         }
         user.setUser(user);
         user.setIsAuth(true);
-        user.setError(false)
+        user.setError(false);
 
         navigate(SHOP_ROUTE);
       } catch (e) {

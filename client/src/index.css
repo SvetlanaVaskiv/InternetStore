@@ -1,15 +1,13 @@
-
-
-body{
-    font-family: serif;
-    padding: 3px;
+body {
+  font-family: serif;
+  padding: 3px;
 }
-#root{
-    background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
-    min-height: 100%;
-    padding: 5px;
+#root {
+  background-image: linear-gradient(315deg, #1fd1f9 0%, #b621fe 74%);
+  min-height: 100%;
+  padding: 5px;
 }
-.image{
+.image {
   width: 100%;
   height: 100%;
 }
@@ -31,220 +29,223 @@ body{
     7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
   outline: none;
 }
-.device-cnt{
-  background-image: radial-gradient(rgba(98, 104, 237, 0.98) 42.44%, rgba(16, 16, 20, 0.93));
-width: 150px;
-color: #fff;
-
+.device-cnt {
+  background-image: radial-gradient(
+    rgba(98, 104, 237, 0.98) 42.44%,
+    rgba(16, 16, 20, 0.93)
+  );
+  width: 150px;
+  color: #fff;
 }
-.txt-device{
+.txt-device {
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #fff;
 }
-.smStar{
+.smStar {
   width: 25px;
   height: 25px;
   margin-left: 2px;
 }
 
-.rating{
+.rating {
   margin-top: 1em;
   display: flex;
   align-items: center;
   color: aquamarine;
 }
-.bgStar{
+.bgStar {
   display: flex;
   align-items: center;
   justify-content: center;
-    width: 240px;
-    height: 240px;
-    background-size: cover;
-    font-size: 64px;
-
+  width: 240px;
+  height: 240px;
+  background-size: cover;
+  font-size: 64px;
 }
-.device-icon{
+.device-icon {
   width: 300px;
   height: 300px;
 }
 .clearFiltres {
-  background: radial-gradient(circle, rgba(247, 150, 192, 1) 32.35%, rgba(118, 174, 241, 1) 98.74%);
-    line-height: 42px;
-    padding: 0;
-    border: none;
-  }
-  .clearFiltres span {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  .clearFiltres:before,
-  .clearFiltres:after {
-    position: absolute;
-    content: "";
-    height: 0%;
-    width: 1px;
-   box-shadow:
-     -1px -1px 20px 0px rgba(255,255,255,1),
-     -4px -4px 5px 0px rgba(255,255,255,1),
-     7px 7px 20px 0px rgba(0,0,0,.4),
-     4px 4px 5px 0px rgba(0,0,0,.3);
-  }
-  .clearFiltres:before {
-    right: 0;
-    top: 0;
-    transition: all 500ms ease;
-  }
-  .clearFiltres:after {
-    left: 0;
-    bottom: 0;
-    transition: all 500ms ease;
-  }
-  .clearFiltres:hover{
-   
-    box-shadow: none;
-    background: radial-gradient(circle, rgba(150, 154, 247, 1) 29.83%, rgba(117, 241, 122, 1) 73.95%);
-color: #313d9e;
-  }
-  .clearFiltres:hover:before {
-    transition: all 500ms ease;
-    height: 100%;
-  }
-  .clearFiltres:hover:after {
-    transition: all 500ms ease;
-    height: 100%;
-  }
-  .clearFiltres span:before,
-  .clearFiltres span:after {
-    position: absolute;
-    content: "";
-    box-shadow:
-     -1px -1px 20px 0px rgba(255,255,255,1),
-     -4px -4px 5px 0px rgba(255,255,255,1),
-     7px 7px 20px 0px rgba(0,0,0,.4),
-     4px 4px 5px 0px rgba(0,0,0,.3);
-  }
-  .clearFiltres span:before {
-    left: 0;
-    top: 0;
-    width: 0%;
-    height: .5px;
-    transition: all 500ms ease;
-  }
-  .clearFiltres span:after {
-    right: 0;
-    bottom: 0;
-    width: 0%;
-    height: .5px;
-    transition: all 500ms ease;
-  }
-  .clearFiltres span:hover:before {
-    width: 100%;
-  }
-  .clearFiltres span:hover:after {
-    width: 100%;
-  }
+  background: radial-gradient(
+    circle,
+    rgba(247, 150, 192, 1) 32.35%,
+    rgba(118, 174, 241, 1) 98.74%
+  );
+  line-height: 42px;
+  padding: 0;
+  border: none;
+}
+.clearFiltres span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.clearFiltres:before,
+.clearFiltres:after {
+  position: absolute;
+  content: "";
+  height: 0%;
+  width: 1px;
+  box-shadow: -1px -1px 20px 0px rgba(255, 255, 255, 1),
+    -4px -4px 5px 0px rgba(255, 255, 255, 1),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.4), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.clearFiltres:before {
+  right: 0;
+  top: 0;
+  transition: all 500ms ease;
+}
+.clearFiltres:after {
+  left: 0;
+  bottom: 0;
+  transition: all 500ms ease;
+}
+.clearFiltres:hover {
+  box-shadow: none;
+  background: radial-gradient(
+    circle,
+    rgba(150, 154, 247, 1) 29.83%,
+    rgba(117, 241, 122, 1) 73.95%
+  );
+  color: #313d9e;
+}
+.clearFiltres:hover:before {
+  transition: all 500ms ease;
+  height: 100%;
+}
+.clearFiltres:hover:after {
+  transition: all 500ms ease;
+  height: 100%;
+}
+.clearFiltres span:before,
+.clearFiltres span:after {
+  position: absolute;
+  content: "";
+  box-shadow: -1px -1px 20px 0px rgba(255, 255, 255, 1),
+    -4px -4px 5px 0px rgba(255, 255, 255, 1),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.4), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.clearFiltres span:before {
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: 0.5px;
+  transition: all 500ms ease;
+}
+.clearFiltres span:after {
+  right: 0;
+  bottom: 0;
+  width: 0%;
+  height: 0.5px;
+  transition: all 500ms ease;
+}
+.clearFiltres span:hover:before {
+  width: 100%;
+}
+.clearFiltres span:hover:after {
+  width: 100%;
+}
 .removeChoise {
-    background-color: #f0ecfc;
+  background-color: #f0ecfc;
   background-image: linear-gradient(315deg, #f0ecfc 0%, #c797eb 74%);
-    line-height: 42px;
-    padding: 0;
-    border: none;
-    width: 4em;
-  }
-  .removeChoise span {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-  .removeChoise:before,
-  .removeChoise:after {
-    position: absolute;
-    content: "";
-    right: 0;
-    bottom: 0;
-    background: #c797eb;
-    transition: all 0.3s ease;
-  }
-  .removeChoise:before{
-     height: 0%;
-     width: 2px;
-  }
-  .removeChoise:after {
-    width: 0%;
-    height: 2px;
-  }
-  .removeChoise:hover:before {
-    height: 100%;
-  }
-  .removeChoise:hover:after {
-    width: 100%;
-  }
-  .removeChoise:hover{
-    background: transparent;
-  }
-  .removeChoise span:hover{
-    color: #c797eb;
-  }
-  .removeChoise span:before,
-  .removeChoise span:after {
-    position: absolute;
-    content: "";
-    left: 0;
-    top: 0;
-    background: #c797eb;
-    transition: all 0.3s ease;
-  }
-  .removeChoise span:before {
-    width: 2px;
-    height: 0%;
-  }
-  .removeChoise span:after {
-    height: 2px;
-    width: 0%;
-  }
-  .removeChoise span:hover:before {
-    height: 100%;
-  }
-  .removeChoise span:hover:after {
-    width: 100%;
-  }
-    
-.layoutNavbar{
-    border: 3px solid #1fd1f9;
-    border-radius: 5px 5px 0 0;
+  line-height: 42px;
+  padding: 0;
+  border: none;
+  width: 4em;
+}
+.removeChoise span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.removeChoise:before,
+.removeChoise:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  bottom: 0;
+  background: #c797eb;
+  transition: all 0.3s ease;
+}
+.removeChoise:before {
+  height: 0%;
+  width: 2px;
+}
+.removeChoise:after {
+  width: 0%;
+  height: 2px;
+}
+.removeChoise:hover:before {
+  height: 100%;
+}
+.removeChoise:hover:after {
+  width: 100%;
+}
+.removeChoise:hover {
+  background: transparent;
+}
+.removeChoise span:hover {
+  color: #c797eb;
+}
+.removeChoise span:before,
+.removeChoise span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  background: #c797eb;
+  transition: all 0.3s ease;
+}
+.removeChoise span:before {
+  width: 2px;
+  height: 0%;
+}
+.removeChoise span:after {
+  height: 2px;
+  width: 0%;
+}
+.removeChoise span:hover:before {
+  height: 100%;
+}
+.removeChoise span:hover:after {
+  width: 100%;
+}
+
+.layoutNavbar {
+  border: 3px solid #1fd1f9;
+  border-radius: 5px 5px 0 0;
 }
 @media (max-width: 576px) {
   .typeListLarge {
     display: none;
   }
-  .layout{
-      border: #b621fe 3px solid;
-      border-top: none;
-      border-radius: 0 0 5px 5px;
-
-  }
-}
-
-@media (min-width: 577px) and (max-width:767px) {
-    .typeListLarge {
-        display: none;
-      }
   .layout {
-      border: none
+    border: #b621fe 3px solid;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
   }
 }
-@media (min-width:768px) {
-    .listSmall {
-        display: none;
-      }
+
+@media (min-width: 577px) and (max-width: 767px) {
+  .typeListLarge {
+    display: none;
+  }
+  .layout {
+    border: none;
+  }
+}
+@media (min-width: 768px) {
+  .listSmall {
+    display: none;
+  }
 }
 
-html, 
+html,
 body {
-    height: 100%;
+  height: 100%;
 }

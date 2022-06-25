@@ -1,5 +1,6 @@
 const ApiError = require("../error/apiError");
 const { BasketDevice, Basket, Device } = require("../models/models");
+const jwt_decode = require("jwt-decode");
 
 class BasketDeviceController {
   async getAll(req, res) {
@@ -19,20 +20,20 @@ class BasketDeviceController {
   }
   async updateCount(req, res, next) {
     try {
-      const {id, userId}= req.body;
+      const { id, userId } = req.body;
       let { count } = req.body;
       console.log(count);
-      
+
       const basket = await Basket.findOne({
         where: { userId: userId },
       });
       const updatedBasket = await BasketDevice.update(
         { count: ++count },
         {
-          where: { basketId:id },
+          where: { basketId: id },
         }
       );
-     
+
       console.log(updatedBasket);
       return res.json(basket);
     } catch (error) {
@@ -41,35 +42,36 @@ class BasketDeviceController {
   }
 
   async create(req, res, next) {
- 
-      const { id,count } = req.body;
-      
+    try {
+      const { id, count, user } = req.body;
+      const userId = jwt_decode(user);
       const basketId = await Basket.findOne({
-        where: { userId: req.body.user.id },
+        where: { userId: userId.id },
       });
-      let basketDevice;
-      let result = await BasketDevice.findOne({ where:{deviceId:id}});
-      console.log(result)
-      let updateCount =result?.count
-      if (result=== null) {
-        basketDevice=  await BasketDevice.create({
+      console.log(basketId);
+      let result = await BasketDevice.findOne({ where: { deviceId: id } });
+      let updateCount = result?.count;
+      if (result === null) {
+        await BasketDevice.create({
           deviceId: id,
           basketId: basketId.id,
-          count: count
+          count: count,
         });
-      } else{
-        basketDevice= await BasketDevice.update(
+      } else {
+        await BasketDevice.update(
           { count: ++updateCount },
           {
-            where: { deviceId:id },
+            where: { deviceId: id },
           }
         );
       }
-       
-      console.log(basketDevice);
-
-      return res.json(basketDevice);
-    
+      const basket = await BasketDevice.findAndCountAll({
+        where: { basketId: basketId.id },
+      });
+      return res.json(basket);
+    } catch (error) {
+      next(ApiError.badRequest(error.message));
+    }
   }
 
   async delete(req, res, next) {

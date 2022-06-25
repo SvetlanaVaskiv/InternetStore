@@ -6,7 +6,6 @@ const BrandBar = observer(() => {
   console.log("BrandBar");
 
   const { device } = useContext(Context);
-  
 
   return (
     <>
