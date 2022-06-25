@@ -8,13 +8,13 @@ import { useContext, useEffect, useState } from "react";
 import { check } from "./http/userApi";
 import {  Spinner } from "react-bootstrap";
 import "./index.css";
-const App = observer(() => {
+import ErrorPage from "./pages/ErrorPage";
+const App = () => {
 
   const { user } = useContext(Context);
 
   const [loadind, setLoading] = useState(true);
-  const [errormsg, setErrormsg] = useState('');
- 
+  const [errormsg,setErrormsg]= useState('')
   useEffect(() => {
     check()
       .then((data) => {
@@ -28,22 +28,26 @@ const App = observer(() => {
       })
       .catch((e) => {
         user.setError(true);
-        setErrormsg("Request failed ;  " +e.message)
+        setErrormsg( " "+e.message)
       })
       .finally(() => setLoading(false));
+     
   }, [user]);
   if (loadind) {
     return <Spinner animation="grow" />;
   }
-console.log(user.error)
+  console.log(user.error)
   return (
     <BrowserRouter>
-    {user.error && <h6>{errormsg}</h6>} 
+    {/*{user.error ? <ErrorPage error={errormsg}/> :*/}<>
     <NavBar />
     <AppRouter />
+    
+    </>
+   
      
     </BrowserRouter>
   );
-});
+};
 
 export default App;

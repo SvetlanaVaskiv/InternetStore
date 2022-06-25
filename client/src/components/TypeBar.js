@@ -5,6 +5,7 @@ import { Context } from "../index";
 import "../index.css";
 
 const TypeBar = observer(() => {
+
   const { device } = useContext(Context);
   const click = ()=>{
     device.removeSelectedType(device.selectedType.name)

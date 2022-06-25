@@ -11,44 +11,43 @@ import {
 import { observer } from "mobx-react-lite";
 import jwt_decode from "jwt-decode";
 import { fetchOneBasket } from "../http/deviceAPI";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NavBar = observer(() => {
+const token=localStorage.getItem('token');
+if (token) {
+jwt_decode(token)
+}
   const { user } = useContext(Context);
   const {device} = useContext(Context);
   const navigate = useNavigate();
- function decodetoken (){
-   try {
-     const token = jwt_decode(localStorage.getItem("token"));
-     return token
-   } catch (error) {
-     console.warn("You need to authorised")
-   }
- }
+
+
  const click= ()=>{
   device.removeSelectedBrand(device.selectedBrand.name)
   device.removeSelectedType(device.removeSelectedType.name)
  }
- const  token = decodetoken()
    const logOut = () => {
      user.setUser({});
      user.setIsAuth(false);
      localStorage.removeItem("token")
    };
-
    const getBasket = async () => {
-     const id= token.id
-   const basketId = await fetchOneBasket(id)
-
+    const {id}=jwt_decode(token)
+    const basketId = await fetchOneBasket(id)
     navigate(BASKET_ROUTE+'/'+basketId.id)
    }
   return (
     <Navbar bg="dark" variant="dark" className="layoutNavbar">
+
       <Container  className="flex-wrap">
         <NavLink style={{ color: "white" }} to={SHOP_ROUTE} onClick={click}>
           Buy Device{" "}
         </NavLink>
         {user.isAuth ? (
           <Nav className="ml-auto">
+            <ToastContainer/>
             {token?.role === "ADMIN" ? (
               <Button
                 variant={"outline-light"}

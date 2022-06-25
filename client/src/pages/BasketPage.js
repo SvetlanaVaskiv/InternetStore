@@ -1,22 +1,33 @@
+import { useContext, useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap"
+import { useParams } from "react-router-dom";
+import Basket from "../components/Basket";
+import { addDevice, fetchOneBasket, getBasketDevice } from "../http/deviceAPI"
+import jwt_decode from "jwt-decode";
+import { Context } from "..";
+import { observer } from "mobx-react-lite";
 
 
-const BasketPage = ()=> {
+const BasketPage = observer(()=> {
+  const {basket} = useContext(Context);
+  const token= localStorage.getItem("token");
 
 
+ 
+ 
+
+useEffect(() => {
+    const {id}=jwt_decode(token)
+  getBasketDevice(id).then((res)=>{
+    basket.setBasket(res.rows)
+    basket.setTotalCount(res.count)
+   
+  });
+  },[basket])
+ 
     return (
-        <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
-        <Card.Body>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the bulk of
-            the card's content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-      </Card>
+      <Basket/>
     )
-}
+})
 
 export default BasketPage

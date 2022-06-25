@@ -8,5 +8,6 @@ const authMiddleware = require('../middleware/authMiddleware')
 router.get('/', basketDeviceController.getAll)
 router.post('/',basketDeviceController.create)
 router.delete('/', basketDeviceController.delete)
+router.put('/', basketDeviceController.updateCount)
 
 module.exports = router

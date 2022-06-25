@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom"
 import { DEVICE_ROUTE } from "../utils/consts"
 
 const DeviceItem = ({device})=> {
+
 const navigate = useNavigate()
 function handleClick() {
   (navigate(DEVICE_ROUTE+'/'+device.id))

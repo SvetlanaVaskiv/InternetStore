@@ -8,12 +8,13 @@ import {
   Spinner,
 } from "react-bootstrap";
 import ratingIcon from "../assets/rating.png";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { addDevice, fetchOneDevice, updateRating } from "../http/deviceAPI";
 import ErrorPage from "./ErrorPage";
 import star from '../assets/rating.png'
 import jwt_decode from "jwt-decode";
+import { Context } from "..";
 
 
 
@@ -21,7 +22,8 @@ const DevicePage = () => {
   const [loadind, setLoading] = useState(true);
   const [device, setDevice] = useState({});
   const { id } = useParams();
- 
+ const {basket}= useContext(Context);
+ let count=basket.count
   useEffect(() => {
       fetchOneDevice(id)
         .then((data) => setDevice(data))
@@ -41,17 +43,18 @@ const DevicePage = () => {
       console.log(error)
     }
   }
-  const user = jwt_decode( localStorage.getItem("token"))
 
   const addToBasket = async () => {
+    const user = jwt_decode(localStorage.getItem("token"))
 try {
-  const data = await addDevice({id, user})
+ await addDevice({id, user, count})
 } catch (error) {
   console.log(error)
 }
   }
 
   return (<>
+
     {device === null ? <ErrorPage/> : <Container className="mt-3">
       <Row>
         <Col md={4}>
@@ -108,6 +111,7 @@ try {
         ))}
       </Row>
     </Container>}</>
+
   );
 };
 
