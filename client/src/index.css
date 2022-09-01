@@ -168,13 +168,14 @@ body {
   position: absolute;
   content: "";
   right: 0;
-  bottom: 0;
+ bottom: 0;
   background: #c797eb;
   transition: all 0.3s ease;
 }
 .removeChoise:before {
   height: 0%;
   width: 2px;
+  
 }
 .removeChoise:after {
   width: 0%;
@@ -184,7 +185,7 @@ body {
   height: 100%;
 }
 .removeChoise:hover:after {
-  width: 100%;
+  width: inherit;
 }
 .removeChoise:hover {
   background: transparent;

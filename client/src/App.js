@@ -38,11 +38,12 @@ const App = () => {
   console.log(user.error);
   return (
     <BrowserRouter>
-      {/*{user.error ? <ErrorPage error={errormsg}/> :*/}
-      <>
+    
         <NavBar />
+        {user.error&&<ErrorPage error={errormsg}/> }
+
         <AppRouter />
-      </>
+      
     </BrowserRouter>
   );
 };

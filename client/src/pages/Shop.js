@@ -21,6 +21,7 @@ const Shop = observer(() => {
       device.setTotalCount(data.count);
     });
   }, [device]);
+ 
   useEffect(() => {
     fetchDevices(
       device.selectedType.id,

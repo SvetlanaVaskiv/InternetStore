@@ -9,6 +9,7 @@ const BrandBar = observer(() => {
 
   return (
     <>
+    
       <Navbar bg="light" expand="false" className="mb-3 listSmall">
         <Container fluid>
           <Navbar.Brand href="#">Brands</Navbar.Brand>

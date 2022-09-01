@@ -32,38 +32,44 @@ const TypeBar = observer(() => {
 
       {device.selectedType.name && (
         <Card
-          className="d-flex flex-row  justify-content-center p-0 "
+          className="d-flex flex-row  justify-content-center  "
           border="primary"
           text="primary"
         >
           <Card.Body className="p-0 ps-1 align-self-center">
             {device._selectedType.name}
           </Card.Body>
+         
           <Button
-            className="removeChoise m-2"
+            className="removeChoise "
             onClick={() => device.removeSelectedType(device._selectedType.name)}
           >
             <span>Delete</span>
           </Button>
+         
+        
         </Card>
       )}
       {device.selectedBrand.name && (
         <Card
-          className="d-flex flex-row  justify-content-center p-0 "
+          className="d-flex flex-row  justify-content-center"
           border="primary"
           text="primary"
         >
-          <Card.Body className="p-0 ps-1 align-self-center">
+          <Card.Body className=" ps-1 align-self-center">
             {device.selectedBrand.name}
           </Card.Body>
+          
           <Button
-            className="removeChoise m-2"
+            className="removeChoise"
             onClick={() =>
               device.removeSelectedBrand(device.selectedBrand.name)
             }
           >
-            <span>Delete</span>
+            <span className="span">Delete</span>
           </Button>
+          
+         
         </Card>
       )}
 
