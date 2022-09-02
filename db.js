@@ -1,15 +1,15 @@
-const {Sequelize}= require('sequelize');
+const { Sequelize } = require("sequelize");
 module.exports =
   process.env.NODE_ENV === "production"
     ? new Sequelize(process.env.DATABASE_URL)
     : new Sequelize(
-        process.env.DB_NAME || "elitypescript",
-        process.env.DB_USER || "eli",
+        process.env.DB_NAME || "dfbbhnmjfvgnft",
+        process.env.DB_USER || "hndywujhwacohe",
         process.env.DB_PASSWORD,
         {
           dialect: "postgres",
           host: process.env.PSQL_HOST || "localhost",
-         // port: process.env.DB_PORT,
+          // port: process.env.DB_PORT,
           dialect: "postgres",
           pool: {
             max: 100,
