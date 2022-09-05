@@ -17,6 +17,7 @@ const TypeBar = observer(() => {
     device.removeSelectedType(device.selectedType.name);
     device.removeSelectedBrand(device.selectedBrand.name);
   };
+  console.log(device);
   return (
     <>
       {device.selectedType.name ? (
@@ -39,15 +40,13 @@ const TypeBar = observer(() => {
           <Card.Body className="p-0 ps-1 align-self-center">
             {device._selectedType.name}
           </Card.Body>
-         
+
           <Button
             className="removeChoise "
             onClick={() => device.removeSelectedType(device._selectedType.name)}
           >
             <span>Delete</span>
           </Button>
-         
-        
         </Card>
       )}
       {device.selectedBrand.name && (
@@ -59,7 +58,7 @@ const TypeBar = observer(() => {
           <Card.Body className=" ps-1 align-self-center">
             {device.selectedBrand.name}
           </Card.Body>
-          
+
           <Button
             className="removeChoise"
             onClick={() =>
@@ -68,8 +67,6 @@ const TypeBar = observer(() => {
           >
             <span className="span">Delete</span>
           </Button>
-          
-         
         </Card>
       )}
 
@@ -87,7 +84,7 @@ const TypeBar = observer(() => {
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              {device.types.map((type) => (
+              {device?.types.map((type) => (
                 <ListGroup.Item
                   key={type.id}
                   active={type.id === device.selectedType.id}
