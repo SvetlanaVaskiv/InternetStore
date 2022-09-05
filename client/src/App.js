@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar";
 import { useContext, useEffect, useState } from "react";
 import { check } from "./http/userApi";
 import { Spinner } from "react-bootstrap";
-import 'normalize.css';
+import "normalize.css";
 import "./index.css";
 import ErrorPage from "./pages/ErrorPage";
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
 
   const [loadind, setLoading] = useState(true);
   const [errormsg, setErrormsg] = useState("");
-  useEffect(() => {
+ /* useEffect(() => {
     check()
       .then((data) => {
         if (data) {
@@ -34,16 +34,14 @@ const App = () => {
   }, [user]);
   if (loadind) {
     return <Spinner animation="grow" />;
-  }
-  console.log(user.error);
+  }*/
+  console.log(user.error, "Here is an error");
   return (
     <BrowserRouter>
-    
-        <NavBar />
-        {user.error&&<ErrorPage error={errormsg}/> }
+      <NavBar />
+      {user.error && <ErrorPage error={errormsg} />}
 
-        <AppRouter />
-      
+      <AppRouter />
     </BrowserRouter>
   );
 };
