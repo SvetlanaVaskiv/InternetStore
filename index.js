@@ -7,6 +7,7 @@ const fileUpload = require("express-fileupload");
 const router = require("./routes/index");
 const errorHadler = require("./middleware/ErrorHandlerMiddleware");
 const path = require("path");
+const { info } = require("console");
 
 sequelize
   .authenticate()
@@ -23,14 +24,18 @@ app.use(cors());
 app.use(express.json());
 //app.use(express.static(path.resolve(__dirname, 'static')))
 app.use(fileUpload({}));
+ app.use(express.static(path.join(__dirname, "/static/")));
+if (process.env.NODE_ENV === "production"){
   // Exprees will serve up production assets
+
   app.use(express.static(path.join(__dirname, "client/build")));
 
   // Express serve up index.html file if it doesn't recognize route
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });
-
+}
+ 
 
 app.use("/api", router);
 
