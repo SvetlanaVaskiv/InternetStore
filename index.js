@@ -7,7 +7,7 @@ const fileUpload= require('express-fileupload')
 const router = require('./routes/index')
 const errorHadler = require('./middleware/ErrorHandlerMiddleware')
 const path = require('path')
-const { Client } = require("pg");
+/*const { Client } = require("pg");
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
@@ -27,7 +27,7 @@ client.query(
     }
     client.end();
   }
-);
+);*/
 
 const PORT= process.env.PORT || 8080
 
