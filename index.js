@@ -28,7 +28,14 @@ client.query(
     client.end();
   }
 );*/
-
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch((err) => {
+    console.error("Unable to connect to the database:", err);
+  });
 const PORT= process.env.PORT || 8080
 
 const app = express()
