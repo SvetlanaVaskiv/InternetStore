@@ -1,16 +1,13 @@
 import axios from "axios";
-
-const $host = axios.create({
-  baseURL:
-    process.env.NODE_ENV === "production"
+const baseURL=   process.env.NODE_ENV === "production"
       ? "https://svitlana-store.herokuapp.com/"
-      : process.env.REACT_APP_API_URL,
+      : process.env.REACT_APP_API_URL
+const $host = axios.create({
+  
+  baseURL
 });
 const $authHost = axios.create({
-  baseURL:
-    process.env.NODE_ENV === "production"
-      ? "https://svitlana-store.herokuapp.com/"
-      : process.env.REACT_APP_API_URL,
+  baseURL
 });
 const authInterceptor = (config) => {
   config.headers.authorization = `Bearer ${localStorage.getItem("token")}`;
