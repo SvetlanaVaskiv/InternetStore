@@ -1,14 +1,21 @@
-/*const { Sequelize } = require("sequelize");
+const { Sequelize } = require("sequelize");
 module.exports =
   process.env.NODE_ENV === "production"
-    ? new Sequelize(process.env.DATABASE_URL)
+    ? new Sequelize(process.env.DATABASE_URL, {
+        dialectOptions: {
+          ssl: {
+            require: true,
+            rejectUnauthorized: false,
+          },
+        },
+      })
     : new Sequelize(
-        process.env.DB_NAME || "apple",
-        process.env.DB_USER || "apple",
+        process.env.DB_NAME ,
+        process.env.DB_USER ,
         process.env.DB_PASSWORD,
         {
           dialect: "postgres",
-          host: process.env.DB_HOST || process.env.PSQL_HOST,
+          host: process.env.DB_HOST ,
           port: process.env.DB_PORT,
           dialect: "postgres",
           pool: {
@@ -19,8 +26,8 @@ module.exports =
             acquire: 1000000,
           },
         }
-      );*/
-const Sequelize = require("sequelize");
+      );
+/*const Sequelize = require("sequelize");
 module.exports  = new Sequelize(process.env.DATABASE_URL, {
   dialectOptions: {
     ssl: {
@@ -29,4 +36,4 @@ module.exports  = new Sequelize(process.env.DATABASE_URL, {
     },
   },
 });
-
+*/
