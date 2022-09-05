@@ -29,7 +29,9 @@ export const check = async () => {
   let decodedToken;
 
   try {
-    const { data } = await $authHost.get("api/user/auth");
+    const  data  = await $authHost.get("api/user/auth");
+    console.log(data)
+    if(data)
     localStorage.setItem("token", data.token);
     decodedToken = jwt_decode(data.token);
   } catch (err) {

@@ -18,7 +18,7 @@ const App = () => {
   useEffect(() => {
     check()
       .then((data) => {
-        console.log(data);
+
         if (data) {
           user.setUser(true);
           user.setIsAuth(true);
@@ -28,7 +28,6 @@ const App = () => {
         }
       })
       .catch((e) => {
-        console.log(e, 'errror mmmmesss')
         user.setError(true);
         setErrormsg(" " + e.message);
       })
