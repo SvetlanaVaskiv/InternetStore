@@ -15,7 +15,7 @@ const App = () => {
 
   const [loadind, setLoading] = useState(true);
   const [errormsg, setErrormsg] = useState("");
- /* useEffect(() => {
+  useEffect(() => {
     check()
       .then((data) => {
         if (data) {
@@ -34,7 +34,7 @@ const App = () => {
   }, [user]);
   if (loadind) {
     return <Spinner animation="grow" />;
-  }*/
+  }
   console.log(user.error, "Here is an error");
   return (
     <BrowserRouter>
