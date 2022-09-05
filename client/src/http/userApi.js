@@ -26,15 +26,15 @@ export const login = async (email, password) => {
 };
 
 export const check = async () => {
-  const { data } = await $authHost.get("api/user/auth");
-  console.log(data);
   let decodedToken;
-  if (data) {
+
+  try {
+    const { data } = await $authHost.get("api/user/auth");
     localStorage.setItem("token", data.token);
     decodedToken = jwt_decode(data.token);
+  } catch (err) {
+    return new Error("Invalid token. Please try again later");
   }
-  if (decodedToken) {
-    return decodedToken;
-  }
-  return new Error("Invalid token. Please try again later");
+
+  return decodedToken;
 };
