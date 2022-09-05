@@ -1,15 +1,20 @@
 import axios from "axios";
 
 const $host = axios.create({
-  baseURL: process.env.REACT_APP_API_URL|| 'https://svitlana-store.herokuapp.com/',
+  baseURL:
+    process.env.NODE_ENV === "production"
+      ? "https://svitlana-store.herokuapp.com/"
+      : process.env.REACT_APP_API_URL,
 });
 const $authHost = axios.create({
   baseURL:
-    process.env.REACT_APP_API_URL || "https://svitlana-store.herokuapp.com/",
+    process.env.NODE_ENV === "production"
+      ? "https://svitlana-store.herokuapp.com/"
+      : process.env.REACT_APP_API_URL,
 });
 const authInterceptor = (config) => {
   config.headers.authorization = `Bearer ${localStorage.getItem("token")}`;
-    return config;
+  return config;
 };
 
 $authHost.interceptors.request.use(authInterceptor);
