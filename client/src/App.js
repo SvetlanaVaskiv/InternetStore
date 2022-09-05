@@ -16,22 +16,21 @@ const App = () => {
   const [loadind, setLoading] = useState(true);
   const [errormsg, setErrormsg] = useState("");
   useEffect(() => {
-   // check()
-    //  .then((data) => {
-     //   if (data) {
+    check()
+      .then((data) => {
+        if (data) {
           user.setUser(true);
           user.setIsAuth(true);
-     //   } else {
-     //     user.setIsAuth(false);
-    //    }
+        } else {
+          user.setIsAuth(false);
+        }
         user.setError(false);
-        setLoading(false);
-    //  })
-  //    .catch((e) => {
-   //     user.setError(true);
-   //     setErrormsg(" " + e.message);
-  //    })
-   //   .finally(() => setLoading(false));
+      })
+      .catch((e) => {
+        user.setError(true);
+        setErrormsg(" " + e.message);
+      })
+      .finally(() => setLoading(false));
   }, [user]);
   if (loadind) {
     return <Spinner animation="grow" />;
