@@ -25,6 +25,7 @@ const App = () => {
      //     user.setIsAuth(false);
     //    }
         user.setError(false);
+        setLoading(false);
     //  })
   //    .catch((e) => {
    //     user.setError(true);
