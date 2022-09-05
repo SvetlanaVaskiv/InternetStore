@@ -17,7 +17,6 @@ const TypeBar = observer(() => {
     device.removeSelectedType(device.selectedType.name);
     device.removeSelectedBrand(device.selectedBrand.name);
   };
-  console.log(device);
   return (
     <>
       {device.selectedType.name ? (

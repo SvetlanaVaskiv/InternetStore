@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { Container, Navbar, Offcanvas, ListGroup } from "react-bootstrap";
 import { Context } from "../index";
 const BrandBar = observer(() => {
-  console.log("BrandBar");
 
   const { device } = useContext(Context);
 

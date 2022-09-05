@@ -4,7 +4,6 @@ import { Context } from "../index";
 import { Pagination } from "react-bootstrap";
 
 const Pages = observer(() => {
-  console.log("Pages");
 
   const { device } = useContext(Context);
   const pageCount = Math.ceil(device.totalCount / device.limit);

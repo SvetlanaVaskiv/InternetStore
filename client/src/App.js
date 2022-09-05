@@ -15,9 +15,10 @@ const App = () => {
 
   const [loadind, setLoading] = useState(true);
   const [errormsg, setErrormsg] = useState("");
- useEffect(() => {
+  useEffect(() => {
     check()
       .then((data) => {
+        console.log(data);
         if (data) {
           user.setUser(true);
           user.setIsAuth(true);
@@ -27,6 +28,7 @@ const App = () => {
         }
       })
       .catch((e) => {
+        console.log(e, 'errror mmmmesss')
         user.setError(true);
         setErrormsg(" " + e.message);
       })
@@ -35,10 +37,9 @@ const App = () => {
   if (loadind) {
     return <Spinner animation="grow" />;
   }
-  console.log(user);
   return (
     <BrowserRouter>
-  <NavBar />
+      <NavBar />
       {user.error && <ErrorPage error={errormsg} />}
 
       <AppRouter />
