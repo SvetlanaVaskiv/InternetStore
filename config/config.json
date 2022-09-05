@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "apple",
+    "password": "qwerty",
+    "database": "apple",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "apple",
+    "password": "qwerty",
+    "database": "apple",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "apple",
+    "password": "qwerty",
+    "database": "apple",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
