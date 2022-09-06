@@ -27,10 +27,8 @@ export const login = async (email, password) => {
 
 export const check = async () => {
   let decodedToken;
-
   try {
     const data = await $authHost.get("api/user/auth");
-    console.log(data);
     if (data.token) localStorage.setItem("token", data.token);
     return (decodedToken = jwt_decode(data.token));
   } catch (err) {

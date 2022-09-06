@@ -17,6 +17,7 @@ const TypeBar = observer(() => {
     device.removeSelectedType(device.selectedType.name);
     device.removeSelectedBrand(device.selectedBrand.name);
   };
+  console.log(device.types.length);
   return (
     <>
       {device.selectedType.name ? (
@@ -83,35 +84,37 @@ const TypeBar = observer(() => {
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              {device?.types.map((type) => (
-                <ListGroup.Item
-                  key={type.id}
-                  active={type.id === device.selectedType.id}
-                  style={{ cursor: "pointer" }}
-                  className=" mt-3 p-1"
-                >
-                  {" "}
-                  <div onClick={() => device.setSelectedType(type)}>
-                    {type.name}
-                  </div>
-                </ListGroup.Item>
-              ))}
+              {device.types.lenght != 0 &&
+                device.types.map((type) => (
+                  <ListGroup.Item
+                    key={type.id}
+                    active={type.id === device.selectedType.id}
+                    style={{ cursor: "pointer" }}
+                    className=" mt-3 p-1"
+                  >
+                    {" "}
+                    <div onClick={() => device.setSelectedType(type)}>
+                      {type.name}
+                    </div>
+                  </ListGroup.Item>
+                ))}
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
 
-      {device.types.map((type) => (
-        <ListGroup.Item
-          key={type.id}
-          active={type.id === device.selectedType.id}
-          style={{ cursor: "pointer" }}
-          className=" mt-3 p-1 typeListLarge"
-        >
-          {" "}
-          <div onClick={() => device.setSelectedType(type)}>{type.name}</div>
-        </ListGroup.Item>
-      ))}
+      {device.types.lenght != 0 &&
+        device.types.map((type) => (
+          <ListGroup.Item
+            key={type.id}
+            active={type.id === device.selectedType.id}
+            style={{ cursor: "pointer" }}
+            className=" mt-3 p-1 typeListLarge"
+          >
+            {" "}
+            <div onClick={() => device.setSelectedType(type)}>{type.name}</div>
+          </ListGroup.Item>
+        ))}
     </>
   );
 });
