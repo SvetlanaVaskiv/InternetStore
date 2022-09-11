@@ -5,6 +5,7 @@ export const addDevice = async (id, user) => {
   return data;
 };
 export const createType = async (type) => {
+  console.log(type)
   const { data } = await $authHost.post("api/type", type);
   return data;
 };

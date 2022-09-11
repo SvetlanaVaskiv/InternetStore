@@ -7,13 +7,13 @@ import jwt_decode from "jwt-decode";
 import { useParams } from "react-router-dom";
 
 const BasketItem = ({ device }) => {
+  const {user}= useContext(Context);
   const { id } = useParams();
   const { basket } = useContext(Context);
-  const token = localStorage.getItem("token");
   const basketId = id;
   console.log(basket.totalCount);
   const addMoreDev = () => {
-    const { id } = jwt_decode(token);
+    const  id  = user.id;
 
     const up = updateCount(basketId, basket.count, id);
   };

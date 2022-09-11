@@ -18,7 +18,6 @@ const App = () => {
   useEffect(() => {
     check()
       .then((data) => {
-
         if (data) {
           user.setUser(true);
           user.setIsAuth(true);
@@ -39,7 +38,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <NavBar />
-      {user.error && <ErrorPage error={errormsg} />}
 
       <AppRouter />
     </BrowserRouter>

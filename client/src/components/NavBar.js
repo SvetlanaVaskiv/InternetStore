@@ -9,16 +9,11 @@ import {
   SHOP_ROUTE,
 } from "../utils/consts";
 import { observer } from "mobx-react-lite";
-import jwt_decode from "jwt-decode";
 import { fetchOneBasket } from "../http/basketApi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const NavBar = observer(() => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    jwt_decode(token);
-  }
   const { user } = useContext(Context);
   const { device } = useContext(Context);
   const navigate = useNavigate();
@@ -33,7 +28,7 @@ const NavBar = observer(() => {
     localStorage.removeItem("token");
   };
   const getBasket = async () => {
-    const { id } = jwt_decode(token);
+    const id = user.id;
     const basketId = await fetchOneBasket(id);
     navigate(BASKET_ROUTE + "/" + basketId.id);
   };
@@ -46,7 +41,7 @@ const NavBar = observer(() => {
         {user.isAuth ? (
           <Nav className="ml-auto">
             <ToastContainer />
-            {token?.role === "ADMIN" ? (
+            {user.role === "ADMIN" ? (
               <Button
                 variant={"outline-light"}
                 onClick={() => navigate(ADMIN_ROUTE)}

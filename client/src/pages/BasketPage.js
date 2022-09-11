@@ -7,15 +7,15 @@ import { observer } from "mobx-react-lite";
 
 const BasketPage = observer(() => {
   const { basket } = useContext(Context);
-  const token = localStorage.getItem("token");
+  const { user } = useContext(Context);
 
   useEffect(() => {
-    const { id } = jwt_decode(token);
+    const id  = user.id;
     getBasketDevice(id).then((res) => {
       basket.setBasket(res.rows);
       basket.setTotalCount(res.count);
     });
-  }, [basket, token]);
+  }, [basket, user.id]);
 
   return <Basket />;
 });

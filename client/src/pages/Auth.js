@@ -4,7 +4,7 @@ import { Alert, Button, Card, Container, Form } from "react-bootstrap";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../index";
 import { login, registration } from "../http/userApi";
-import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/consts";
+import { LOGIN_ROUTE, REGISTRATION_ROUTE, ROOT_ROUTE } from "../utils/consts";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -43,7 +43,7 @@ const Auth = observer(() => {
         user.setIsAuth(true);
         user.setError(false);
 
-        navigate(SHOP_ROUTE);
+        navigate(ROOT_ROUTE);
       } catch (e) {
         alert(e.response.data.message);
       }
