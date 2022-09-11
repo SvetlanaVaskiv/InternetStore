@@ -32,6 +32,9 @@ body {
   border-top-style: solid;
   margin: 0;
   padding: 2px 5px 0 5px;
+    min-width: 44%;
+    text-align: center;
+
 }
 .divider-box1 {
   background-image: linear-gradient(
@@ -72,7 +75,7 @@ body {
   grid-area: A;
 }
 .box-1 > img {
-  width: 40vw;
+  width: 100%;
   height: 100%;
   object-fit: cover;
 }
@@ -80,7 +83,7 @@ body {
   grid-area: B;
 }
 .box-2 > img {
-  width: 20vw;
+  width: 100%;
   height: 125%;
   object-fit: cover;
 }
@@ -88,7 +91,7 @@ body {
   grid-area: C;
 }
 .box-3 > img {
-  width: 13vw;
+  width: 100%;
   height: 140%;
   object-fit: cover;
 }
@@ -96,7 +99,7 @@ body {
   grid-area: D;
 }
 .box-4 > img {
-  width: 33vw;
+  width: 100%;
   height: 100%;
   object-fit: cover;
 }
@@ -105,7 +108,7 @@ body {
   grid-area: E;
 }
 .box-5 > img {
-  width: 20vw;
+  width: 100%;
   height: 100%;
   object-fit: cover;
 }

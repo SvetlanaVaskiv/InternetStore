@@ -9,19 +9,12 @@ import jwt_decode from "jwt-decode";
 import DeviceList from "../components/DeviceList";
 import { useContext } from "react";
 import { Context } from "..";
+import { observer } from "mobx-react-lite";
 
-export const HomePage = () => {
+const HomePage = observer(() => {
   const { device } = useContext(Context);
   const { user } = useContext(Context);
-  console.log(device.devices.length);
-  let token = localStorage.getItem("token");
-  if (token) {
-    token = jwt_decode(token);
-    user.setRole(token.role);
-    user.setId(token.id);
-  }
-  console.log(user.role);
-
+  
   return (
     <>
       <section>
@@ -71,7 +64,14 @@ export const HomePage = () => {
         <p>Latest Products</p>
         <div className="divider-box2"></div>
       </div>
-      <DeviceList />
+      {device.devices.length === 0 && user.role === "ADMIN" ? (
+        <h1>Your future devices will be displayed here</h1>
+      ) : device.devices.length === 0 ? (
+        <h1>Latest products will be displayed here</h1>
+      ) : (
+        <DeviceList />
+      )}
     </>
   );
-};
+});
+export default HomePage;

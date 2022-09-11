@@ -28,17 +28,13 @@ export const login = async (email, password) => {
 
 export const check = async () => {
   let decodedToken;
-  try {
+ 
     const { data } = await $authHost.get("api/user/auth");
-        console.log(data);
+    console.log(data);
 
-    console.log(data.token);
     if (data.token) {
       localStorage.setItem("token", data.token);
     }
-    console.log((decodedToken = jwt_decode(data.token)));
     return (decodedToken = jwt_decode(data.token));
-  } catch (err) {
-    return new Error("Invalid token. Please try again later");
-  }
+
 };

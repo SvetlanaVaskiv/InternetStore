@@ -18,16 +18,18 @@ const App = () => {
   useEffect(() => {
     check()
       .then((data) => {
+        console.log(data);
         if (data) {
           user.setUser(true);
           user.setIsAuth(true);
           user.setError(false);
+          user.setRole(data.role);
+          user.setId(data.id);
         } else {
           user.setIsAuth(false);
         }
       })
       .catch((e) => {
-        user.setError(true);
         setErrormsg(" " + e.message);
       })
       .finally(() => setLoading(false));

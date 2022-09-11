@@ -3,10 +3,11 @@ import { useContext } from "react";
 import { Alert, Button, Card, Container, Form } from "react-bootstrap";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../index";
-import { login, registration } from "../http/userApi";
+import { check, login, registration } from "../http/userApi";
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, ROOT_ROUTE } from "../utils/consts";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import jwt_decode from "jwt-decode";
 
 const Auth = observer(() => {
   const { user } = useContext(Context);
@@ -39,17 +40,25 @@ const Auth = observer(() => {
         } else {
           data = await registration(values.email, values.password);
         }
-        user.setUser(user);
-        user.setIsAuth(true);
-        user.setError(false);
+        const checked = await check()
+          .then((data) => data)
+          .catch((err) => {
+            user.setError(err.message);
+          });
+        if (checked) {
+          user.setRole(checked.role);
+          user.setId(checked.id);
+          user.setUser(user);
+          user.setIsAuth(true);
+          user.setError(false);
 
-        navigate(ROOT_ROUTE);
+          navigate(ROOT_ROUTE);
+        }
       } catch (e) {
         alert(e.response.data.message);
       }
     },
   });
-
   return (
     <Container
       className="d-flex justify-content-center align-items-center"
@@ -99,6 +108,12 @@ const Auth = observer(() => {
               {isLogin ? "Enter" : "Sign Up"}
             </Button>
           </div>
+          {user.error && (
+            <div>
+              <p>Incorrect login/password. Try again or</p>{" "}
+              <NavLink to={REGISTRATION_ROUTE}>Sign Up</NavLink>
+            </div>
+          )}
         </Form>
       </Card>
     </Container>

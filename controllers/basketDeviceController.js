@@ -22,7 +22,6 @@ class BasketDeviceController {
     try {
       const { id, userId } = req.body;
       let { count } = req.body;
-      console.log(count);
 
       const basket = await Basket.findOne({
         where: { userId: userId },
@@ -34,7 +33,6 @@ class BasketDeviceController {
         }
       );
 
-      console.log(updatedBasket);
       return res.json(basket);
     } catch (error) {
       next(ApiError.badRequest(error.message));
@@ -48,7 +46,6 @@ class BasketDeviceController {
       const basketId = await Basket.findOne({
         where: { userId: userId.id },
       });
-      console.log(basketId);
       let result = await BasketDevice.findOne({ where: { deviceId: id } });
       let updateCount = result?.count;
       if (result === null) {

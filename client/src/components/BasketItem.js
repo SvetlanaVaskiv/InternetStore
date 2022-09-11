@@ -11,7 +11,6 @@ const BasketItem = ({ device }) => {
   const { id } = useParams();
   const { basket } = useContext(Context);
   const basketId = id;
-  console.log(basket.totalCount);
   const addMoreDev = () => {
     const  id  = user.id;
 
