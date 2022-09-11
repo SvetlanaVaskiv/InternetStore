@@ -16,7 +16,7 @@ export const registration = async (email, password) => {
 };
 
 export const login = async (email, password) => {
-  console.log(password)
+  console.log(password);
   try {
     const { data } = await $host.post("api/user/login", { email, password });
     localStorage.setItem("token", data.token);
@@ -29,9 +29,14 @@ export const login = async (email, password) => {
 export const check = async () => {
   let decodedToken;
   try {
-    const {data} = await $authHost.get("api/user/auth");
-    console.log(data.token)
-    if (data.token) localStorage.setItem("token", data.token);
+    const { data } = await $authHost.get("api/user/auth");
+        console.log(data);
+
+    console.log(data.token);
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+    }
+    console.log((decodedToken = jwt_decode(data.token)));
     return (decodedToken = jwt_decode(data.token));
   } catch (err) {
     return new Error("Invalid token. Please try again later");
