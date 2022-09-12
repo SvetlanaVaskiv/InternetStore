@@ -22,7 +22,8 @@ export const login = async (email, password) => {
     localStorage.setItem("token", data.token);
     return jwt_decode(data.token);
   } catch (error) {
-    alert(error.message);
+    console.log(error)
+    alert("Your email or password isn't in the database. Please, go to sign up");
   }
 };
 
