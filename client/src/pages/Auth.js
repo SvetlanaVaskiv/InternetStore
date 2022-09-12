@@ -7,7 +7,6 @@ import { check, login, registration } from "../http/userApi";
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, ROOT_ROUTE } from "../utils/consts";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import jwt_decode from "jwt-decode";
 
 const Auth = observer(() => {
   const { user } = useContext(Context);
