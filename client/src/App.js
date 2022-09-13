@@ -30,6 +30,8 @@ const App = () => {
         }
       })
       .catch((e) => {
+        console.warn("Authorization error", e.message);
+
         setErrormsg(" " + e.message);
       })
       .finally(() => setLoading(false));

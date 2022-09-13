@@ -11,7 +11,9 @@ import * as Yup from "yup";
 const Auth = observer(() => {
   const { user } = useContext(Context);
   const location = useLocation();
-
+const handleLinkClick = () => {
+  user.setError(false)
+};
   const navigate = useNavigate();
   const isLogin = location.pathname === LOGIN_ROUTE;
   const formik = useFormik({
@@ -42,6 +44,8 @@ const Auth = observer(() => {
         const checked = await check()
           .then((data) => data)
           .catch((err) => {
+            console.warn("Authorization error", err.message);
+
             user.setError(err.message);
           });
         if (checked) {
@@ -98,7 +102,7 @@ const Auth = observer(() => {
               </div>
             ) : (
               <div>
-                Do you already have an account{" "}
+                Do you already have an account? {" "}
                 <NavLink to={LOGIN_ROUTE}>Login</NavLink>
               </div>
             )}
@@ -108,9 +112,11 @@ const Auth = observer(() => {
             </Button>
           </div>
           {user.error && (
-            <div>
+            <div className="auth-error">
               <p>Incorrect login/password. Try again or</p>{" "}
-              <NavLink to={REGISTRATION_ROUTE}>Sign Up</NavLink>
+              <NavLink to={REGISTRATION_ROUTE} onClick={handleLinkClick}>
+                Sign Up
+              </NavLink>
             </div>
           )}
         </Form>

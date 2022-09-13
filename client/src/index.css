@@ -61,6 +61,12 @@ form {
   object-fit: contain;
   padding: 5px;
 }
+.auth-error {
+  background-color: #00ff1263;
+    text-align: center;
+    border-radius: 5px;
+    margin: 5px;
+}
 .laptop {
   margin-right: 2vw;
   width: 50vw;

@@ -11,7 +11,7 @@ export const registration = async (email, password) => {
     localStorage.setItem("token", data.token);
     return jwt_decode(data.token);
   } catch (error) {
-    alert(error.response.data.message);
+    console.warn("registration error", error);
   }
 };
 
@@ -22,20 +22,16 @@ export const login = async (email, password) => {
     localStorage.setItem("token", data.token);
     return jwt_decode(data.token);
   } catch (error) {
-    console.log(error)
-    alert("Your email or password isn't in the database. Please, go to sign up");
+    console.warn("login error", error);
   }
 };
 
 export const check = async () => {
-  let decodedToken;
- 
-    const { data } = await $authHost.get("api/user/auth");
-    console.log(data);
+  const { data } = await $authHost.get("api/user/auth");
+  console.log(data);
 
-    if (data.token) {
-      localStorage.setItem("token", data.token);
-    }
-    return (decodedToken = jwt_decode(data.token));
-
+  if (data.token) {
+    localStorage.setItem("token", data.token);
+  }
+  return jwt_decode(data.token);
 };

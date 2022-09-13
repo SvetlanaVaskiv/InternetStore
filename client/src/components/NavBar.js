@@ -1,16 +1,17 @@
 import { useContext } from "react";
 import { Context } from "../index";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   ADMIN_ROUTE,
   BASKET_ROUTE,
   LOGIN_ROUTE,
+  ROOT_ROUTE,
   SHOP_ROUTE,
+  REGISTRATION_ROUTE,
 } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 import { fetchOneBasket } from "../http/basketApi";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const NavBar = observer(() => {
@@ -32,15 +33,22 @@ const NavBar = observer(() => {
     const basketId = await fetchOneBasket(id);
     navigate(BASKET_ROUTE + "/" + basketId.id);
   };
+   const location = useLocation();
+const path =
+  location.pathname === LOGIN_ROUTE
+    ? ROOT_ROUTE
+    : location.pathname === REGISTRATION_ROUTE
+    ? ROOT_ROUTE
+    : SHOP_ROUTE;
+  
   return (
     <Navbar bg="dark" variant="dark" className="layoutNavbar">
       <Container className="flex-wrap">
-        <NavLink style={{ color: "white" }} to={SHOP_ROUTE} onClick={click}>
+        <NavLink style={{ color: "white" }} to={path} onClick={click}>
           Buy Device{" "}
         </NavLink>
         {user.isAuth ? (
           <Nav className="ml-auto">
-            <ToastContainer />
             {user.role === "ADMIN" ? (
               <Button
                 variant={"outline-light"}
