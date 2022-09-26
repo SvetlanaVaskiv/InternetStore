@@ -1,8 +1,31 @@
+
 "use strict";
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define("User", {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+  });
 
-const user = require("../models/user");
+  User.associate = (models) => {
+    User.hasMany(models.Basket);
+  };
 
-module.exports = {
+  return User;
+};
+
+/*module.exports = {
   async up(queryInterface, Sequelize) {
    const users= await queryInterface.createTable("users", {
       id: {
@@ -29,7 +52,6 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
-    return user
     //users hasOne basket
    /* await queryInterface.addColumn("baskets", "userId", {
       type: Sequelize.INTEGER,
@@ -39,10 +61,10 @@ module.exports = {
       },
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
-    });*/
+    })
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("users");
     await queryInterface.removeColumn("baskets", "basketId");
   },
-};
+};*/
