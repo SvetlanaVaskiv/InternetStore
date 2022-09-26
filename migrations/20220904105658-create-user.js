@@ -1,7 +1,10 @@
 "use strict";
+
+const user = require("../models/user");
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("users", {
+   const users= await queryInterface.createTable("users", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -26,6 +29,7 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
+    return user
     //users hasOne basket
    /* await queryInterface.addColumn("baskets", "userId", {
       type: Sequelize.INTEGER,

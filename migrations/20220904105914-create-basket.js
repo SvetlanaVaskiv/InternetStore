@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("baskets", {
+   const baskets= await queryInterface.createTable("baskets", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,20 +16,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      userId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "users",
-            schema: "schema",
-          },
-          key: "id",
-        },
-        allowNull: false,
-      },
     });
     //basket belongsTo user
-   /* await queryInterface.addColumn("baskets", "userId", {
+    await queryInterface.addColumn("baskets", "userId", {
       type: Sequelize.INTEGER,
       references: {
         model: "users",
@@ -37,7 +26,11 @@ module.exports = {
       },
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
-    });*/
+    });
+    baskets.associate=models=>{
+      baskets.belongsTo(models.users)
+    }
+    return baskets
     //basket hasMany basket_device
    /*await queryInterface.addColumn("basket_devices", "basket_id", {
       type: Sequelize.INTEGER,
