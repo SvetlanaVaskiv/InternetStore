@@ -11,9 +11,9 @@ import * as Yup from "yup";
 const Auth = observer(() => {
   const { user } = useContext(Context);
   const location = useLocation();
-const handleLinkClick = () => {
-  user.setError(false)
-};
+  const handleLinkClick = () => {
+    user.setError(false);
+  };
   const navigate = useNavigate();
   const isLogin = location.pathname === LOGIN_ROUTE;
   const formik = useFormik({
@@ -25,21 +25,23 @@ const handleLinkClick = () => {
       password: Yup.string()
         .max(15, "Must be 15 characters or less")
         .min(8, "Must be at least 8 characters")
+        .matches(/[A-Z]+/, "Password must have at least one uppercase letter")
+        .matches(/[a-z]+/, "Password must have at least one lowercase letter")
+        .matches(/[\d]+/, "Password must have at least one number")
         .matches(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-
-          "Password must  contains minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character."
+          /[@$!%*?&]+/,
+          "Password must have at least one special character"
         )
+
         .required("Required"),
       email: Yup.string().email("Invalid email address").required("Required"),
     }),
     onSubmit: async (values) => {
       try {
-        let data;
         if (isLogin) {
-          data = await login(values.email, values.password);
+          await login(values.email, values.password);
         } else {
-          data = await registration(values.email, values.password);
+          await registration(values.email, values.password);
         }
         const checked = await check()
           .then((data) => data)
@@ -68,7 +70,7 @@ const handleLinkClick = () => {
       style={{ height: window.innerHeight - 54 }}
     >
       <Card style={{ width: 600 }} className="p-4">
-        <h2 className="m-auto">{isLogin ? "Authorisation" : "Registration"}</h2>
+        <h2 className="m-auto">{isLogin ? "Authorization" : "Registration"}</h2>
         <Form onSubmit={formik.handleSubmit} className="d-flex flex-column">
           <Form.Control
             className="mt-3 "
@@ -102,7 +104,7 @@ const handleLinkClick = () => {
               </div>
             ) : (
               <div>
-                Do you already have an account? {" "}
+                Do you already have an account?{" "}
                 <NavLink to={LOGIN_ROUTE}>Login</NavLink>
               </div>
             )}

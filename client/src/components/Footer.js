@@ -1,7 +1,6 @@
 import { Image } from "react-bootstrap";
 import asus from "../assets/store_photo3.jpeg";
 import { observer } from "mobx-react-lite";
-import { Alert, Card, Button, Container, Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 

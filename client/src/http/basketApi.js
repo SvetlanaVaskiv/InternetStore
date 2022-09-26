@@ -8,7 +8,6 @@ export const getBasketDevice = async (id) => {
     console.log(error);
   }
 };
-
 export const fetchOneBasket = async (id) => {
   try {
     const { data } = await $host.get("api/basket/" + id);

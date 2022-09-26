@@ -2,7 +2,6 @@ const ApiError = require("../error/apiError");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User, Basket } = require("../models/models");
-
 const generateJwt = (id, email, role) => {
   return jwt.sign({ id, email, role }, process.env.SECRET_KEY, {
     expiresIn: "24h",
@@ -25,18 +24,22 @@ class UserController {
     const hashPassword = await bcrypt.hash(password, 7);
     const admin = await User.findOne({where:{ role: 'ADMIN'}})
     let token ;
+    let user
     if(!admin) {    const user = await User.create({ email, role: "ADMIN", password: hashPassword });
     token = generateJwt(user.id, user.email, user.role);
 
   } else{
-    const user = await User.create({ email, role, password: hashPassword });
+   
+     user = await User.create({ email, role, password: hashPassword });
+     console.log("Bsket", Basket.prototype);
+
     const basket = await Basket.create({ userId: user.id });
+    console.log(user.id);
     token = generateJwt(user.id, user.email, user.role);
 
   }
-    return res.json({ token });
+    return res.json({ token});
   }
-
   async login(req, res, next) {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
@@ -58,3 +61,7 @@ class UserController {
 }
 
 module.exports = new UserController();
+
+
+
+

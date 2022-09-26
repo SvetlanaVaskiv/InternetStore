@@ -9,8 +9,10 @@ import { check } from "./http/userApi";
 import { Spinner } from "react-bootstrap";
 import "normalize.css";
 import "./index.css";
-import ErrorPage from "./pages/ErrorPage";
-const App = () => {
+
+
+
+const App = observer(() => {
   const { user } = useContext(Context);
 
   const [loadind, setLoading] = useState(true);
@@ -46,6 +48,6 @@ const App = () => {
       <AppRouter />
     </BrowserRouter>
   );
-};
+});
 
 export default App;

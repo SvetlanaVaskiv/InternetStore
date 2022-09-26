@@ -1,14 +1,13 @@
 import { useContext } from "react";
 import { Context } from "../index";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   ADMIN_ROUTE,
   BASKET_ROUTE,
   LOGIN_ROUTE,
   ROOT_ROUTE,
   SHOP_ROUTE,
-  REGISTRATION_ROUTE,
 } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 import { fetchOneBasket } from "../http/basketApi";
@@ -33,27 +32,22 @@ const NavBar = observer(() => {
     const basketId = await fetchOneBasket(id);
     navigate(BASKET_ROUTE + "/" + basketId.id);
   };
-   const location = useLocation();
-const path =
-  location.pathname === LOGIN_ROUTE
-    ? ROOT_ROUTE
-    : location.pathname === REGISTRATION_ROUTE
-    ? ROOT_ROUTE
-    : SHOP_ROUTE;
-  
+  const goToAdminPage=() => {
+    navigate(ADMIN_ROUTE);
+  }
+  console.log(user.id);
+  console.log(user.role);
   return (
     <Navbar bg="dark" variant="dark" className="layoutNavbar">
       <Container className="flex-wrap">
-        <NavLink style={{ color: "white" }} to={path} onClick={click}>
+        <NavLink style={{ color: "white" }} to={SHOP_ROUTE} onClick={click}>
           Buy Device{" "}
         </NavLink>
+
         {user.isAuth ? (
           <Nav className="ml-auto">
             {user.role === "ADMIN" ? (
-              <Button
-                variant={"outline-light"}
-                onClick={() => navigate(ADMIN_ROUTE)}
-              >
+              <Button variant={"outline-light"} onClick={() => goToAdminPage}>
                 Admin panel
               </Button>
             ) : (
@@ -79,7 +73,7 @@ const path =
               variant={"outline-light"}
               onClick={() => navigate(LOGIN_ROUTE)}
             >
-              Authorisation
+              Authorization
             </Button>
           </Nav>
         )}

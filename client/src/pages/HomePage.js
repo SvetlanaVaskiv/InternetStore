@@ -5,7 +5,7 @@ import coupleOfLaptops from "../assets/store_photo1.jpeg";
 import couple from "../assets/store_photo4.jpeg";
 import asus from "../assets/store_photo3.jpeg";
 import banner from "../assets/banner.png";
-import woman from "../assets/store_photo5.jpeg";
+import woman from "../assets/women_codes.jpeg";
 import DeviceList from "../components/DeviceList";
 import { useContext } from "react";
 import { Context } from "..";
