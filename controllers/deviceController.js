@@ -48,17 +48,19 @@ class DeviceController {
     try {
       const { id } = req.params;
       const device = await Device.findOne({
-        where:{id}
-      })
-     await Device.update({rating: ++device.rating},{
-      where: { id }
-    });
-    return res.json(device);
+        where: { id },
+      });
+      await Device.update(
+        { rating: ++device.rating },
+        {
+          where: { id },
+        }
+      );
+      return res.json(device);
     } catch (error) {
       next(ApiError.badRequest(err.message));
     }
   }
-
 
   async getAll(req, res) {
     let { brandId, typeId, limit, page } = req.query;
@@ -68,18 +70,16 @@ class DeviceController {
 
     let devices;
     if (!brandId && !typeId) {
-      devices = await Device.findAndCountAll({ 
-        order: [
-          ['id', 'ASC']
-        ],
-        limit, offset });
+      devices = await Device.findAndCountAll({
+        order: [["id", "ASC"]],
+        limit,
+        offset,
+      });
     }
 
     if (brandId && !typeId) {
       devices = await Device.findAndCountAll({
-        order: [
-          ['id', 'ASC']
-        ],
+        order: [["id", "ASC"]],
         where: { brandId },
         limit,
         offset,
@@ -87,9 +87,7 @@ class DeviceController {
     }
     if (!brandId && typeId) {
       devices = await Device.findAndCountAll({
-        order: [
-          ['id', 'ASC']
-        ],
+        order: [["id", "ASC"]],
         where: { typeId },
         limit,
         offset,
@@ -97,9 +95,7 @@ class DeviceController {
     }
     if (brandId && typeId) {
       devices = await Device.findAndCountAll({
-        order: [
-          ['id', 'ASC']
-        ],
+        order: [["id", "ASC"]],
         where: { typeId, brandId },
         limit,
         offset,
