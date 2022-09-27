@@ -1,14 +1,12 @@
 require("dotenv").config();
 const sequelize = require("./db");
-const models = require("./models/models");
+//const models = require("./models/models");
 const express = require("express");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const router = require("./routes/index");
 const errorHadler = require("./middleware/ErrorHandlerMiddleware");
 const path = require("path");
-const { info } = require("console");
-
 sequelize
   .authenticate()
   .then(() => {
@@ -24,8 +22,8 @@ app.use(cors());
 app.use(express.json());
 //app.use(express.static(path.resolve(__dirname, 'static')))
 app.use(fileUpload({}));
- app.use(express.static(path.join(__dirname, "/static/")));
-if (process.env.NODE_ENV === "production"){
+app.use(express.static(path.join(__dirname, "/static/")));
+if (process.env.NODE_ENV === "production") {
   // Exprees will serve up production assets
 
   app.use(express.static(path.join(__dirname, "client/build")));
@@ -36,9 +34,7 @@ if (process.env.NODE_ENV === "production"){
 
   });*/
   app.use("/api", router);
-
 }
- 
 
 app.use("/api", router);
 

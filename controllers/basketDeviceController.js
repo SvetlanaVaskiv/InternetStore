@@ -1,5 +1,7 @@
 const ApiError = require("../error/apiError");
-const { BasketDevice, Basket, Device } = require("../models/models");
+const { BasketDevice } = require("../models/basket_device");
+const {  Basket } = require("../models/basket");
+const { Device } = require("../models/device");
 const jwt_decode = require("jwt-decode");
 
 class BasketDeviceController {

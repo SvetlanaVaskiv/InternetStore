@@ -1,7 +1,10 @@
 const ApiError = require("../error/apiError");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { User, Basket } = require("../models/models");
+const User = require("../models/user.js");
+const  Basket  = require("../models/basket.js");
+
+
 const generateJwt = (id, email, role) => {
   return jwt.sign({ id, email, role }, process.env.SECRET_KEY, {
     expiresIn: "24h",
@@ -14,7 +17,6 @@ class UserController {
     if (!email || !password) {
       return next(ApiError.badRequest("Incorrect email or password"));
     }
-
     const candidate = await User.findOne({ where: { email } });
     if (candidate) {
       return next(
@@ -22,23 +24,25 @@ class UserController {
       );
     }
     const hashPassword = await bcrypt.hash(password, 7);
-    const admin = await User.findOne({where:{ role: 'ADMIN'}})
-    let token ;
-    let user
-    if(!admin) {    const user = await User.create({ email, role: "ADMIN", password: hashPassword });
-    token = generateJwt(user.id, user.email, user.role);
+    const admin = await User.findOne({ where: { role: "ADMIN" } });
+    let token;
+    let user;
+    if (!admin) {
+      const user = await User.create({
+        email,
+        role: "ADMIN",
+        password: hashPassword,
+      });
+      token = generateJwt(user.id, user.email, user.role);
+    } else {
+      user = await User.create({ email, role, password: hashPassword });
+      console.log(Basket);
 
-  } else{
-   
-     user = await User.create({ email, role, password: hashPassword });
-     console.log("Bsket", Basket.prototype);
-
-    const basket = await Basket.create({ userId: user.id });
-    console.log(user.id);
-    token = generateJwt(user.id, user.email, user.role);
-
-  }
-    return res.json({ token});
+      const basket = await Basket.create({ userId: user.id });
+      console.log(user.id);
+      token = generateJwt(user.id, user.email, user.role);
+    }
+    return res.json({ token });
   }
   async login(req, res, next) {
     const { email, password } = req.body;
@@ -61,7 +65,3 @@ class UserController {
 }
 
 module.exports = new UserController();
-
-
-
-
