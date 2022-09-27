@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     "Basket",
     {
       id: DataTypes.INTEGER,
+      userId: DataTypes.INTEGER,
     },
     { tableName: "basket" }
   );
