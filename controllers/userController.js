@@ -1,9 +1,14 @@
 const ApiError = require("../error/apiError");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const User = require("../models/user.js");
-const  Basket  = require("../models/basket.js");
+//const User = require("../models/user.js");
+//const  Basket  = require("../models/basket.js");
+const models= require ("../models");
+console.log('models',models.undefined.User.prototype)
 
+const { User } = models.undefined;
+const { Basket } = models.undefined;
+console.log(User, Basket);
 
 const generateJwt = (id, email, role) => {
   return jwt.sign({ id, email, role }, process.env.SECRET_KEY, {

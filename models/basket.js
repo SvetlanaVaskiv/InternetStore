@@ -1,8 +1,20 @@
-"use strict";
 
-const sequelize = require("../db");
-const { DataTypes } = require("sequelize");
- const Basket = sequelize.define(
+"use strict";
+module.exports = (sequelize, DataTypes) => {
+  const Basket = sequelize.define(
+    "Basket",
+    {
+      id: DataTypes.INTEGER 
+    },
+    {}
+  );
+  Basket.associate = (models) => {
+    // associations can be defined here
+    Basket.belongsTo(models.User);
+  };
+  return Basket;
+};
+/* const Basket = sequelize.define(
    "basket",
    {
      id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },

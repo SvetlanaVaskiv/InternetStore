@@ -1,8 +1,24 @@
 "use strict";
-const sequelize = require("../db");
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define(
+    "User",
+    {
+      name: DataTypes.STRING,
+      email: DataTypes.STRING,
+      password: DataTypes.STRING,
+    },
+    {}
+  );
+  User.associate = (models) => {
+    // associations can be defined here
+    User.hasOne(models.Basket);
+  };
+  return User;
+};
+/*const sequelize = require("../db");
 const { DataTypes } = require("sequelize");
 
-const User = sequelize.define("user", {
+ const User = sequelize.define("user", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   email: { type: DataTypes.STRING, unique: true },
   password: { type: DataTypes.STRING },
@@ -12,6 +28,7 @@ User.associate=(models)=>{
 User.hasOne(models.Basket);
 } 
 module.exports=User
+*/
 /*const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
