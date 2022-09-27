@@ -4,9 +4,9 @@ module.exports = (sequelize, DataTypes) => {
   const Basket = sequelize.define(
     "Basket",
     {
-      id: DataTypes.INTEGER 
+      id: DataTypes.INTEGER,
     },
-    {}
+    { tableName: "basket" }
   );
   Basket.associate = (models) => {
     // associations can be defined here
