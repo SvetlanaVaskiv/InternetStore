@@ -16,17 +16,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: "User",
-          key: "id",
-        },
-      },
     });
     //basket belongsTo user
-   /* await queryInterface.addColumn("baskets", "userId", {
+    await queryInterface.addColumn("baskets", "userId", {
       type: Sequelize.INTEGER,
       references: {
         model: "users",
@@ -34,7 +26,7 @@ module.exports = {
       },
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
-    });*/
+    });
     //basket hasMany basket_device
    /*await queryInterface.addColumn("basket_devices", "basket_id", {
       type: Sequelize.INTEGER,
