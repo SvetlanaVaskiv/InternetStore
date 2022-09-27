@@ -22,6 +22,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      deviceId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Device",
+          key: "id",
+        },
+      },
     });
     // device_infos belongsTo devices
     await queryInterface.addColumn("device_infos", "deviceId", {

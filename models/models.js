@@ -10,11 +10,14 @@ const User = sequelize.define("user", {
 
 const Basket = sequelize.define("basket", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  userId: { type: DataTypes.INTEGER },
 });
 
 const BasketDevice = sequelize.define("basket_device", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   count: { type: DataTypes.INTEGER, defaultValue: 0 },
+  basketId: { type: DataTypes.INTEGER },
+  deviceId: { type: DataTypes.INTEGER },
 });
 
 const Device = sequelize.define("device", {
@@ -23,6 +26,8 @@ const Device = sequelize.define("device", {
   price: { type: DataTypes.INTEGER, allowNull: false },
   rating: { type: DataTypes.INTEGER, defaultValue: 0 },
   img: { type: DataTypes.STRING, allowNull: false },
+  brandId: { type: DataTypes.INTEGER },
+  typeId: { type: DataTypes.INTEGER },
 });
 
 const Type = sequelize.define("type", {
@@ -39,10 +44,13 @@ const DeviceInfo = sequelize.define("device_info", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   title: { type: DataTypes.STRING, allowNull: false },
   description: { type: DataTypes.STRING, allowNull: false },
+  deviceId: { type: DataTypes.INTEGER },
 });
 
 const TypeBrand = sequelize.define("type_brand", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  brandId: { type: DataTypes.INTEGER },
+  typeId: { type: DataTypes.INTEGER },
 });
 
 User.hasOne(Basket);

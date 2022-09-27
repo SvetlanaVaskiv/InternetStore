@@ -28,6 +28,22 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      brandId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Brand",
+          key: "id",
+        },
+      },
+      typeId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Type",
+          key: "id",
+        },
+      },
     });
     //device belongsTo types
     await queryInterface.addColumn("devices", "typesId", {

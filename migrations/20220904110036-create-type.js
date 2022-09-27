@@ -20,19 +20,9 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
-    //type hasMany device
-   /* await queryInterface.addColumn("devices", "type_id", {
-      type: Sequelize.INTEGER,
-      references: {
-        model: "types",
-        key: "id",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "SET NULL",
-    });*/
+   
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("types");
-   // await queryInterface.removeColumn("devices", "type_id");
   },
 };

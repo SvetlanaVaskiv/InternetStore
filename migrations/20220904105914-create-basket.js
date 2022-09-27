@@ -35,20 +35,10 @@ module.exports = {
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     });
-    //basket hasMany basket_device
-   /*await queryInterface.addColumn("basket_devices", "basket_id", {
-      type: Sequelize.INTEGER,
-      references: {
-        model: "baskets",
-        key: "id",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "SET NULL",
-    });*/
+   
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("baskets");
     await queryInterface.removeColumn("baskets", "userId");
-   // await queryInterface.removeColumn("basket_devices", "basket_id");
   },
 };

@@ -19,6 +19,22 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      basketId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Basket",
+          key: "id",
+        },
+      },
+      deviceId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Device",
+          key: "id",
+        },
+      },
     });
     // basket_device belongsTo basket
     await queryInterface.addColumn("basket_devices", "basketId", {
