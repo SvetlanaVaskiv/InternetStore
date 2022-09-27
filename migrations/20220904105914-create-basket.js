@@ -16,6 +16,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "User",
+          key: "id",
+        },
+      },
     });
     //basket belongsTo user
     await queryInterface.addColumn("baskets", "userId", {
